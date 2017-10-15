@@ -1,0 +1,76 @@
+# Conky settings #
+background no
+update_interval 1
+
+cpu_avg_samples 2
+net_avg_samples 2
+
+override_utf8_locale yes
+
+double_buffer yes
+no_buffers yes
+
+text_buffer_size 2048
+#imlib_cache_size 0
+
+temperature_unit celsius
+
+#############################
+# - Window specifications - #
+#############################
+own_window yes
+own_window_type normal
+own_window_transparent no
+own_window_hints undecorated,below,skip_taskbar,skip_pager,sticky
+#own_window_colour gray
+own_window_class Conky
+own_window_title Chronograph
+border_inner_margin 0
+border_outer_margin 0
+
+minimum_size 1330 20
+maximum_height 20
+
+alignment bottom_middle
+gap_x 0
+gap_y 3
+
+# Graphics settings #
+draw_shades no
+draw_outline no
+draw_borders no
+draw_graph_borders no
+
+default_color ffffff
+default_shade_color red
+default_outline_color green
+
+# Text settings #
+use_xft yes
+override_utf8_locale yes
+xftfont Play:normal:size=7
+xftalpha 0.9
+uppercase no
+
+default_color 333333
+#title color
+color0 ec4910
+#normal color
+color1 ffffff
+#clock color
+color2 3D85C6
+#color3 1994D1 
+
+# Lua Load  ##${voffset 750}
+#lua_load ~/.conky/rings-v1.3.1.lua
+#lua_draw_hook_pre ring_stats
+#lua_draw_hook_pre conky_main
+
+own_window_argb_value 128
+own_window_argb_visual yes
+own_window_colour 000000
+TEXT
+#=================================================================#
+#                        NEW                                      #
+#=================================================================#
+${color1}${font Michroma:size=10}${time %a} ${time  %d} ${time  %b} ${time %Y}    ${time %H}:${time %M}   ${color0}|${color1}  Bat : ${battery BAT1}  ${voffset 3}${battery_bar 10,50 BAT1}${voffset -3}   ${color0}|${color1}   Temp: ${acpitemp}°   ${color0}|${color1}   MEM :${memperc}% ${voffset 2}${membar 10,50 }${voffset -2}   ${color0}|${color1}   SWAP : ${swap} / ${swapmax}  ${color0}|${color1}  Root : ${voffset 2}${fs_bar 10,50/}${voffset -2}   ${color0}|${color1}   CPU :${cpu cpu}%  ${voffset 2}${cpugraph 13,50 }${voffset -2}   ${alignr 5}${color0}|${color1}   Upt: ${uptime_short}

@@ -1,0 +1,132 @@
+# Conky settings #
+background no
+update_interval 1
+
+cpu_avg_samples 2
+net_avg_samples 2
+
+override_utf8_locale yes
+
+double_buffer yes
+no_buffers yes
+
+text_buffer_size 2048
+#imlib_cache_size 0
+
+temperature_unit celsius
+
+#############################
+# - Window specifications - #
+#############################
+own_window yes
+own_window_type normal
+own_window_transparent yes
+own_window_hints undecorated,below,skip_taskbar,skip_pager,sticky
+#own_window_colour gray
+own_window_class Conky
+own_window_title Chronograph
+border_inner_margin 0
+border_outer_margin 0
+
+minimum_size 200 600
+maximum_width 250
+
+alignment top_left
+gap_x 20
+gap_y 20
+
+# Graphics settings #
+draw_shades no
+draw_outline no
+draw_borders no
+draw_graph_borders no
+
+default_color gray
+default_shade_color red
+default_outline_color green
+
+# Text settings #
+use_xft yes
+override_utf8_locale yes
+xftfont Play:normal:size=7
+xftalpha 0.9
+uppercase no
+
+default_color 333333
+#title color
+color0 68BA44
+#normal color
+color1 ffffff
+#clock color
+color2 3D85C6
+#color3 1994D1 
+
+# Lua Load  ##${voffset 750}
+#lua_load ~/.conky/rings-v1.3.1.lua
+#lua_draw_hook_pre ring_stats
+#lua_draw_hook_pre conky_main
+
+own_window_argb_value 0
+own_window_argb_visual yes
+own_window_colour 000000
+
+# — Lua Load — #
+
+	lua_load clock1_rings.lua
+    # lua_load ~/.conky/myConky/conkyclock.lua
+     #  lua_draw_hook_pre conky_widgets
+	lua_draw_hook_pre clock_rings
+	#lua_load ~/conky/text.lua
+	#lua_draw_hook_post draw_text
+
+TEXT
+${image archLogo-green.png -p 5,0} 
+${voffset 160}
+# EDITION date time============================================
+${font Michroma:size=9}${goto 50}${color1}${time %a} ${time  %d} ${time  %b} ${time %Y}
+
+#${font Michroma:size=30}${goto 30}${color2}${time %H}:${time %M}
+${font Michroma:size=9}${color0}Uptime: ${color1}${alignr 5}${uptime_short}
+#Temperature================================================================
+${voffset 5}#${font Michroma:size=9}${color0}BATTERIE:${color1}${alignr 5}${battery_percent BAT1}%
+${font Michroma:size=9}${color0}Battery ${color1}${alignr 5}${battery BAT1}
+${goto 5}${battery_bar BAT1 } 
+# EDITION Cpu==============================================
+${voffset 5}${font Michroma:size=9}${color0}Temperature:  ${color1}${alignr 5}${acpitemp}°
+# CpuGraph==============================================
+${voffset 5}${font Michroma:size=10}${color0}CPU :${color1}${alignr 5}${freq_g cpu} Ghz
+${goto 5}${color1}${cpugraph 20 }
+# EDITION Cpu==============================================
+${font Play:normal:size=7}${color0}CPU1: ${goto 50}CPU2: ${goto 100}CPU3: ${goto 150}CPU4:
+${font Play:normal:size=7}${color1}${cpu cpu0}% ${goto 50}${cpu cpu1}% ${goto 100}${cpu cpu2}% ${goto 150}${cpu cpu3}%
+#${font Play:normal:size=7}${voffset 0}${goto 5}${color1}CPU1:${cpu cpu0}%  CPU2:${cpu cpu1}%  CPU3:${cpu cpu2}%   CPU4:${cpu cpu3}% 
+# TOP CPU==============================================
+${goto 20}${font Michroma:size=8}${color0}${voffset 4}Top CPU :
+${goto 20}${voffset 0}${font Play:normal:size=7}${color1}${top name 1}${alignr 5}${top cpu 1}%
+${goto 20}${voffset 2}${font Play:normal:size=7}${color1}${top name 2}${alignr 5}${top cpu 2}%
+${goto 20}${voffset 2}${font Play:normal:size=7}${color1}${top name 3}${alignr 5}${top cpu 3}%
+
+# EDITION MEMORY==============================================
+${font Michroma:size=10}${color0}${voffset 4}MEMORY :${alignr 5}${color1}${memperc}%
+${goto 5}${color1}$membar
+${font Play:normal:size=7}${voffset 0}${goto 20}${color1}SWAP${alignr 5}${color1}${swap} / ${color1}${swapmax}
+${font Play:normal:size=7}${voffset 2}${goto 20}${color1}RAM ${alignr 5}${color1}${mem} / ${color1}${memmax}
+${goto 20}${font Michroma:size=8}${color0}${voffset 4}Top MEMORY :
+${goto 20}${voffset 0}${font Play:normal:size=7}${color1}${top_mem name 1}${alignr 5}${top_mem mem 1}%
+${goto 20}${voffset 2}${font Play:normal:size=7}${color1}${top_mem name 2}${alignr 5}${top_mem mem 2}%
+${goto 20}${voffset 2}${font Play:normal:size=7}${color1}${top_mem name 3}${alignr 5}${top_mem mem 3}%
+
+# EDITION DISK===============================================
+${font Michroma:size=10}${color0}${voffset 4}HARD  DRIVE :
+${goto 5}${color1}${fs_bar /}
+${font Play:normal:size=7}${color1}${goto 20}${voffset 0}Root:${alignr 5}${fs_used /} / ${fs_size /}
+${font Play:normal:size=7}${color1}${goto 20}${voffset 2}Home:${alignr 5}${fs_used /home} / ${fs_size /home}
+${font Play:normal:size=7}${color1}${goto 20}${voffset 2}Data:${alignr 5}${fs_used /media/yahia/Data} / ${fs_size /media/yahia/Data}
+${voffset 4}${goto 5}${color1}READ: ${diskiograph_read 12,150}
+${voffset 1}${goto 5}${color1}WRITE: ${diskiograph_write 12,150}
+#${voffset 10}${goto 5}${color1}${diskio_read}
+#==============================================================
+
+
+
+
